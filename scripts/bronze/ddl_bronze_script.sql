@@ -54,7 +54,7 @@ CREATE TABLE bronze.crm_sales_details (
     sls_ship_dt  INT,
     sls_due_dt   INT,
     sls_sales    DECIMAL(18,2), -- Optimized: Changed from INT to DECIMAL
-    sls_qty      INT,           -- Renamed 'quantity' to 'qty' for brevity
+    sls_quantity      INT,           -- Renamed 'quantity' to 'qty' for brevity
     sls_price    DECIMAL(18,2)  -- Optimized: Changed from INT to DECIMAL
 );
 GO
