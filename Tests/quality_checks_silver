@@ -1,0 +1,91 @@
+/*
+===============================================================================
+Script: Master Data Quality (DQ) Validation - Silver Layer
+Project: Sales Data Warehouse (CRM & ERP Integration)
+Author: Jeremiah Ngiri
+Description: 
+    - This script performs comprehensive validation across all 6 Silver tables.
+    - Tests for PK integrity, standardization, referential integrity, and business logic.
+===============================================================================
+*/
+
+-- ============================================================================
+-- 1. VALIDATION: silver.crm_cust_info
+-- ============================================================================
+PRINT '>>> Validating silver.crm_cust_info...';
+
+-- Check for NULLs or Duplicates in Primary Key
+SELECT cst_id, COUNT(*) as duplicate_count
+FROM silver.crm_cust_info
+GROUP BY cst_id
+HAVING COUNT(*) > 1 OR cst_id IS NULL;
+
+-- Check for Untrimmed Whitespace
+SELECT 'cst_firstname' AS col, cst_firstname AS val FROM silver.crm_cust_info WHERE cst_firstname != TRIM(cst_firstname)
+UNION ALL
+SELECT 'cst_lastname' AS col, cst_lastname AS val FROM silver.crm_cust_info WHERE cst_lastname != TRIM(cst_lastname);
+
+-- Validate Standardization
+SELECT DISTINCT cst_marital_status FROM silver.crm_cust_info;
+SELECT DISTINCT cst_gndr FROM silver.crm_cust_info;
+
+-- ============================================================================
+-- 2. VALIDATION: silver.crm_prd_info
+-- ============================================================================
+PRINT '>>> Validating silver.crm_prd_info...';
+
+-- PK Integrity & Whitespace
+SELECT prd_id, COUNT(*) FROM silver.crm_prd_info GROUP BY prd_id HAVING COUNT(*) > 1 OR prd_id IS NULL;
+SELECT prd_nm FROM silver.crm_prd_info WHERE prd_nm != TRIM(prd_nm);
+
+-- Financial Logic & SCD Type 2 Date Check
+SELECT prd_cost FROM silver.crm_prd_info WHERE prd_cost < 0 OR prd_cost IS NULL;
+SELECT prd_id, prd_key, prd_start_dt, prd_end_dt 
+FROM silver.crm_prd_info 
+WHERE prd_end_dt < prd_start_dt;
+
+-- ============================================================================
+-- 3. VALIDATION: silver.crm_sales_details
+-- ============================================================================
+PRINT '>>> Validating silver.crm_sales_details...';
+
+-- Referential Integrity (Sales to Products/Customers)
+SELECT DISTINCT sls_prd_key FROM silver.crm_sales_details WHERE sls_prd_key NOT IN (SELECT prd_key FROM silver.crm_prd_info);
+SELECT DISTINCT sls_cust_id FROM silver.crm_sales_details WHERE sls_cust_id NOT IN (SELECT cst_id FROM silver.crm_cust_info);
+
+-- Financial Calculation (Sales = Qty * Price)
+SELECT sls_ord_num, sls_sales, (sls_quantity * sls_price) AS expected_sales
+FROM silver.crm_sales_details
+WHERE sls_sales != (sls_quantity * sls_price) OR sls_sales IS NULL;
+
+-- ============================================================================
+-- 4. VALIDATION: silver.erp_cust_az12 & CRM Integration
+-- ============================================================================
+PRINT '>>> Validating ERP Integration (Scorecard)...';
+
+SELECT 'Future Birth Dates' AS Check_Name, COUNT(*) AS Fail_Count FROM silver.erp_cust_az12 WHERE bdate > GETDATE()
+UNION ALL
+SELECT 'Non-Standard Gender', COUNT(*) FROM silver.erp_cust_az12 WHERE gen NOT IN ('Male', 'Female', 'N/A')
+UNION ALL
+SELECT 'Orphaned ERP Records', (SELECT COUNT(*) FROM silver.erp_cust_az12) - (SELECT COUNT(*) FROM silver.erp_cust_az12 e INNER JOIN silver.crm_cust_info c ON e.cid = c.cst_key);
+
+-- ============================================================================
+-- 5. VALIDATION: silver.erp_loc_a101
+-- ============================================================================
+PRINT '>>> Validating silver.erp_loc_a101...';
+
+-- Check CID Format & Country Expansion
+SELECT 'Invalid CID Format' AS Check_Name, COUNT(*) FROM silver.erp_loc_a101 WHERE cid LIKE '%-%'
+UNION ALL
+SELECT 'Unexpanded Country Codes', COUNT(*) FROM silver.erp_loc_a101 WHERE cntry IN ('US', 'USA', 'DE')
+UNION ALL
+SELECT 'Missing Country Info', COUNT(*) FROM silver.erp_loc_a101 WHERE cntry = 'N/A' OR cntry IS NULL;
+
+-- ============================================================================
+-- 6. VALIDATION: silver.erp_px_cat_g1v2
+-- ============================================================================
+PRINT '>>> Validating silver.erp_px_cat_g1v2...';
+
+-- Check for Whitespace in Categories
+SELECT * FROM silver.erp_px_cat_g1v2 
+WHERE cat != TRIM(cat) OR subcat != TRIM(subcat) OR maintenance != TRIM(maintenance);
