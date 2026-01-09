@@ -1,232 +1,159 @@
 **🚀 Sales Data Warehouse Project (SQL Server)**
 
 Welcome to the Sales Data Warehouse Project.
-I’m Jeremiah Ogochukwu Ngiri, a Lead Business Intelligence Analyst, and this repository demonstrates an end-to-end data engineering and analytics workflow—from raw source data to business-ready analytical views.
+
+I am Jeremiah Ogochukwu Ngiri, a Lead Business Intelligence Analyst. 
+
+This repository demonstrates an end-to-end data engineering and analytics workflow—transforming raw, 
+
+fragmented source data into business-ready analytical insights.
 
 
-This project highlights my ability to design, build, and document a modern data warehouse using SQL Server, with a strong focus on data quality, dimensional modeling, and analytical usability.
+This project highlights my ability to design, build, and document a modern data warehouse using SQL Server,
 
-Whether you’re a recruiter, data engineer, or analytics professional, this repository is intended to clearly show how I translate complex, multi-source data into actionable business insight.
+with a rigorous focus on Data Quality, Dimensional Modeling, and Analytical Usability.
 
-<img width="1210" height="680" alt="image" src="https://github.com/user-attachments/assets/ebe3ee21-674c-43f5-9b39-3ecac3b94f45" />
+Whether you are a recruiter, data engineer, or analytics professional,
+
+this repository is designed to showcase how I translate complex, multi-source data into actionable business intelligence.
 
 
+<img width="1210" height="680" alt="Architecture Overview" src="https://github.com/user-attachments/assets/ebe3ee21-674c-43f5-9b39-3ecac3b94f45" />
+
+
+________________________________________
 **📌 Project Objective**
 
-The primary goal of this project was to design and implement a centralized Sales Data Warehouse that consolidates data from two core operational systems:
 
-CRM (Customer Relationship Management)
+The primary goal of this project was to design and implement a centralized Sales Data Warehouse 
 
-ERP (Enterprise Resource Planning)
+that consolidates data from two core operational systems:
 
-By integrating these systems into a single analytical environment, the warehouse provides a single source of truth for sales, customers, and products—enabling reliable reporting and strategic decision-making.
+•	CRM (Customer Relationship Management)
+
+•	ERP (Enterprise Resource Planning)
 
 
 
+By integrating these systems into a single analytical environment, 
+
+the warehouse provides a Single Source of Truth for sales, customers, and products—enabling reliable reporting and strategic decision-making.
+
+________________________________________
 **🛠️ Technical Stack**
 
-**Data Sources**
+•	Data Sources: High-volume CSV extracts (CRM & ERP).
 
-High-volume CSV extracts from CRM and ERP systems
+•	Database: SQL Server (T-SQL).
 
-**Technologies & Tools**
+•	Data Engineering: Advanced SQL (CTEs, Window Functions, Complex Joins).
 
-**Database: SQL Server**
+•	ETL / Data Preparation: SQL-based Medallion Pipeline.
 
-**Data Engineering: Advanced SQL (CTEs, Window Functions, Joins)**
 
-**ETL / Data Preparation: Power Query**
-
+________________________________________
 **🔗 Data Integration Strategy**
-To create a unified "Customer 360" view, I integrated data from two distinct source systems (CRM and ERP). 
+
+To create a unified "Customer 360" view, I integrated data from two distinct source systems. 
+
 This model illustrates the mapping logic used to resolve entity fragmentation.
 
-<img width="1235" height="659" alt="image" src="https://github.com/user-attachments/assets/33943109-0cd9-4b38-aca5-86ef4f3733d5" />
+
+<img width="1235" height="659" alt="Integration Model" src="https://github.com/user-attachments/assets/33943109-0cd9-4b38-aca5-86ef4f3733d5" />
 
 
-**Integration Model**
-Customer Integration: Combined CRM customer info with ERP birthday and location data using the cid / cst_key mapping.
+•	Customer Integration: Combined CRM profiles with ERP demographic and location data using the cid / cst_key mapping.
 
-Product Integration: Enriched CRM product records with ERP-managed categories and sub-categories.
+•	Product Integration: Enriched CRM product records with ERP-managed categories and sub-categories.
 
-Sales Mapping: Transactional sales details are linked to core entities to build the fact-dimension relationships.
+•	Sales Mapping: Linked transactional sales details to core entities to establish fact-dimension relationships.
 
+
+________________________________________
 **🏛️ Modeling Approach: Star Schema (Kimball-style)**
-To optimize the Gold Layer for analytical performance and ease of use, I implemented a Star Schema following the Kimball dimensional modeling approach. This design decouples business entities into Dimensions while centralizing quantitative metrics into a Fact table.
 
-<img width="747" height="567" alt="image" src="https://github.com/user-attachments/assets/c0401ef4-6ff3-42b4-9b82-356e14c98bc7" />
+To optimize the Gold Layer for analytical performance and ease of use, 
 
-
-**Entity Relationship Diagram (ERD)**
-Fact Table: gold.fact_sales contains transactional metrics like sales amount and quantity, linked to dimensions via surrogate keys.
-
-Dimension Tables: gold.dim_customers and gold.dim_products provide descriptive attributes (SCD Type 1 logic) for slicing and dicing the data.
+implemented a Star Schema following the Kimball dimensional modeling approach.
 
 
-**🏗️ Data Engineering Workflow**
+<img width="747" height="567" alt="ERD" src="https://github.com/user-attachments/assets/c0401ef4-6ff3-42b4-9b82-356e14c98bc7" />
 
-1️⃣ Data Quality & Cleansing
 
-Before integration, extensive data preparation was performed to ensure analytical reliability:
+•	Fact Table: gold.fact_sales — contains transactional metrics like sales amount and quantity, linked to dimensions via surrogate keys.
 
-Resolved data quality issues across CRM and ERP sources
+•	Dimension Tables: gold.dim_customers and gold.dim_products — provide descriptive attributes (SCD Type 1 logic) for granular slicing and dicing.
 
-Standardized attributes (e.g., gender, country)
 
-Handled NULL values, duplicates, and inconsistent identifiers
+________________________________________
+**🏗️ Data Architecture (Medallion Pattern)**
 
-Validated financial and sales transaction accuracy
+The warehouse follows a three-layer architecture to ensure data reliability and scalability:
 
-2️⃣ Integration & Modeling
+•	🥉 Bronze Layer (Raw): Stores raw data as-is from source systems to preserve historical traceability.
 
-Cleaned datasets were integrated into a high-performance analytical model:
+•	🥈 Silver Layer (Cleaned): Performs cleansing, standardization, and deduplication. Handles NULL values and inconsistent formatting.
 
-Architecture: Star Schema optimized for BI queries
+•	🥇 Gold Layer (Presentation): Implemented as SQL Views. Applies business logic, generates Surrogate Keys (using ROW_NUMBER()), and models data into the final Star Schema.
 
-Fact Table: Centralized sales transactions
 
-Dimensions: Customer and product attributes
+<img width="1373" height="710" alt="Medallion Architecture" src="https://github.com/user-attachments/assets/4cf60a3a-9960-443d-87b6-22dc6098d1d8" />
 
-Analytics: SQL Window Functions used to support trend and performance analysis
 
-Scope: Focused on current and relevant records for actionable insights
-
-🏗️ Data Architecture (Medallion Pattern)
-
-The warehouse follows a three-layer architecture to ensure data reliability, scalability, and clarity:
-
-**🥉 Bronze Layer (Raw)**
-
--Stores raw data as-is from source systems
-
--Preserves historical records for traceability
-
-**🥈 Silver Layer (Cleaned)**
-
--Performs cleansing, standardization, and deduplication
-
--Handles data quality issues (NULLs, inconsistent codes)
-
--Prepares data for analytical modeling
-
-**🥇 Gold Layer (Presentation)**
-
--Implemented as SQL Views
-
--Applies business logic and generates surrogate keys
-
--Models data into a Star Schema for reporting and BI tools
-
-<img width="1373" height="710" alt="image" src="https://github.com/user-attachments/assets/4cf60a3a-9960-443d-87b6-22dc6098d1d8" />
-
+________________________________________
 
 **🚀 Key Features & Transformations**
 
-🔹 Data Integration (Customer 360)
+•	Customer 360: Unified fragmented profiles across crm_cust_info, erp_cust_az12, and erp_loc_a101.
 
-Unified customer profiles by joining:
+•	Standardization: Implemented prioritized logic to normalize gender values and country codes across systems.
 
-crm_cust_info
+•	Surrogate Keys: Used ROW_NUMBER() within Gold views to ensure stable analytical relationships, independent of source system IDs.
 
-erp_cust_az12
+•	Data Quality Gates: * Uniqueness: Zero duplicate records in dimensions.
 
-erp_loc_a101
+o	Referential Integrity: 100% mapping between Fact and Dimension tables.
 
-**Implemented prioritized logic to standardize gender values across systems**
+o	Business Rules: Validated logical flow (e.g., Shipping Date $\ge$ Order Date).
 
-**🔹 Data Modeling (Star Schema)**
-
-Fact Table
-
-gold.fact_sales — centralized sales transactions
-
-**Dimension Tables**
-
-gold.dim_customers
-
-gold.dim_products
-
-**Surrogate Keys**
-
--Generated using ROW_NUMBER() within Gold views
-
--Ensures stable analytical relationships across dimensions
-
-**🔹 Data Quality & Validation**
-
-Robust validation rules were applied at the Gold layer to ensure trust in analytics:
-
-Uniqueness: No duplicate customers or products
-
-Referential Integrity: All sales records map to valid customers and products
-
-Business Rules: Shipping dates cannot precede order dates
-
-**📂 Documentation & Deliverables**
-
-Data Catalogue: Column-level documentation for all Gold views
-
-SQL Scripts: Optimized transformation logic
-
-Architecture Documentation: Clear explanation of layers and modeling decisions
-
-Validation Notes: Summary of data quality checks and resolutions
-
+________________________________________
 **📊 Business Impact**
 
-Consolidated Reporting: Eliminated data silos between CRM and ERP systems
+•	Consolidated Reporting: Eliminated data silos between CRM and ERP systems.
 
-Performance Tracking: Enabled revenue, product, and customer performance analysis
+•	Automated ETL: Reduced manual data preparation through a structured, repeatable SQL pipeline.
 
-Automation: Reduced manual data preparation through structured ETL workflows
+•	Decision Support: Delivered a reliable foundation for executive-level revenue, product, and customer performance analysis.
 
-Decision Support: Delivered a reliable foundation for executive-level reporting
-
-
-
-linkedin: https://www.linkedin.com/in/jeremiah-ngiri-7a279619a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfHfXhsbtQrSIlFZZ0I1NqQ%3D%3D
-
-
-<img width="1429" height="790" alt="image" src="https://github.com/user-attachments/assets/15db3e20-db29-4ca1-9e63-5ff3ee392a7b" />
-
-
+________________________________________
 **🛠️ How to Run**
-Follow these steps to replicate the environment and set up the Data Warehouse on your local machine.
 
-**1. Prerequisites**
-SQL Server Management Studio (SSMS) or Azure Data Studio.
-
-SQL Server Instance (Express or Developer edition).
+1. Prerequisites
+    •	SQL Server Management Studio (SSMS) or Azure Data Studio.
+    •	SQL Server Instance (Express or Developer edition).
 
 2. Setup Instructions
-    1. Clone the Repository:
+        1.	Clone the Repository:
+        Bash
+        git clone https://github.com/jerrydben/sql_data_warehouse_project.git
+        
+        2.	Create the Database: Execute Scripts/init_database.sql to initialize the DataWarehouse database and schemas (bronze, silver, gold).
+       
+        3.	Run the Pipeline: Execute scripts in this order:
+       
+            o	bronze_load.sql
+      	
+            o	silver_transformation.sql
+      	
+            o	gold_views.sql
 
-Bash
-
-https://github.com/jerrydben/sql_data_warehouse_project.git
-
-    2. Create the Database: Open the Scripts/init_database.sql 
-script in SSMS and execute it to create the DataWarehouse database and the bronze, silver, and gold schemas.
-
-    3. Run the Pipeline: Execute the scripts in the following order:
-
--Bronze: Run bronze_load.sql to import raw data.
-
--Silver: Run silver_transformation.sql to clean and standardize the data.
-
--Gold: Run gold_views.sql to create the final analytical Star Schema.
-
-    4. Verify Data Quality: Run Tests/gold_dq_checks.sql to confirm that all quality gates pass and the data is consistent.
-
-**3. Usage**
-Once the scripts have finished running, you can connect your preferred BI tool (Power BI, Tableau, or Excel) to the Gold Views for reporting.
-
+        4.	Verify Quality: Run Tests/gold_dq_checks.sql to confirm all quality gates pass.
+________________________________________
 **📫 Connect With Me**
 
-If you’d like to discuss this project or explore collaboration opportunities in Data Engineering or Business Intelligence, feel free to reach out:
+•	LinkedIn: [Jeremiah Ngiri](https://www.google.com/search?q=https://www.linkedin.com/in/jeremiah-ngiri-7a279619a)
 
-Email: jerrydben24@gmail.com
+•	Email: jerrydben24@gmail.com
 
-Location: Onitsha, Anambra State, Nigeria
+•	Location: Onitsha, Anambra State, Nigeria
 
-phone: +2347033485535
