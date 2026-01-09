@@ -3,6 +3,7 @@
 Welcome to the Sales Data Warehouse Project.
 I’m Jeremiah Ogochukwu Ngiri, a Lead Business Intelligence Analyst, and this repository demonstrates an end-to-end data engineering and analytics workflow—from raw source data to business-ready analytical views.
 
+
 This project highlights my ability to design, build, and document a modern data warehouse using SQL Server, with a strong focus on data quality, dimensional modeling, and analytical usability.
 
 Whether you’re a recruiter, data engineer, or analytics professional, this repository is intended to clearly show how I translate complex, multi-source data into actionable business insight.
@@ -17,6 +18,9 @@ ERP (Enterprise Resource Planning)
 
 By integrating these systems into a single analytical environment, the warehouse provides a single source of truth for sales, customers, and products—enabling reliable reporting and strategic decision-making.
 
+<img width="1210" height="661" alt="image" src="https://github.com/user-attachments/assets/c8037630-6970-4e4b-8016-0a9c805ca286" />
+
+
 **🛠️ Technical Stack**
 
 **Data Sources**
@@ -30,7 +34,17 @@ High-volume CSV extracts from CRM and ERP systems
 **Data Engineering: Advanced SQL (CTEs, Window Functions, Joins)**
 **ETL / Data Preparation: Power Query**
 
-**Modeling Approach: Star Schema (Kimball-style)**
+**🏛️ Modeling Approach: Star Schema (Kimball-style)**
+To optimize the Gold Layer for analytical performance and ease of use, I implemented a Star Schema following the Kimball dimensional modeling approach. This design decouples business entities into Dimensions while centralizing quantitative metrics into a Fact table.
+
+**Entity Relationship Diagram (ERD)**
+Fact Table: gold.fact_sales contains transactional metrics like sales amount and quantity, linked to dimensions via surrogate keys.
+
+Dimension Tables: gold.dim_customers and gold.dim_products provide descriptive attributes (SCD Type 1 logic) for slicing and dicing the data.
+
+
+<img width="1080" height="783" alt="image" src="https://github.com/user-attachments/assets/8e5fc432-218a-428b-be82-6780707264b5" />
+
 
 **🏗️ Data Engineering Workflow**
 
