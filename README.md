@@ -148,6 +148,43 @@ Automation: Reduced manual data preparation through structured ETL workflows
 
 Decision Support: Delivered a reliable foundation for executive-level reporting
 
+
+
+linkedin: https://www.linkedin.com/in/jeremiah-ngiri-7a279619a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfHfXhsbtQrSIlFZZ0I1NqQ%3D%3D
+
+
+<img width="1429" height="790" alt="image" src="https://github.com/user-attachments/assets/15db3e20-db29-4ca1-9e63-5ff3ee392a7b" />
+
+
+🛠️** How to Run**
+Follow these steps to replicate the environment and set up the Data Warehouse on your local machine.
+
+1. Prerequisites
+SQL Server Management Studio (SSMS) or Azure Data Studio.
+
+SQL Server Instance (Express or Developer edition).
+
+2. Setup Instructions
+Clone the Repository:
+
+Bash
+
+git clone https://github.com/your-username/your-repo-name.git
+Create the Database: Open the Scripts/init_database.sql script in SSMS and execute it to create the DataWarehouse database and the bronze, silver, and gold schemas.
+
+Run the Pipeline: Execute the scripts in the following order:
+
+Bronze: Run bronze_load.sql to import raw data.
+
+Silver: Run silver_transformation.sql to clean and standardize the data.
+
+Gold: Run gold_views.sql to create the final analytical Star Schema.
+
+Verify Data Quality: Run Tests/gold_dq_checks.sql to confirm that all quality gates pass and the data is consistent.
+
+3. Usage
+Once the scripts have finished running, you can connect your preferred BI tool (Power BI, Tableau, or Excel) to the Gold Views for reporting.
+
 **📫 Connect With Me**
 
 If you’d like to discuss this project or explore collaboration opportunities in Data Engineering or Business Intelligence, feel free to reach out:
@@ -157,9 +194,3 @@ Email: jerrydben24@gmail.com
 Location: Onitsha, Anambra State, Nigeria
 
 phone: +2347033485535
-
-linkedin: https://www.linkedin.com/in/jeremiah-ngiri-7a279619a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfHfXhsbtQrSIlFZZ0I1NqQ%3D%3D
-
-
-<img width="1429" height="790" alt="image" src="https://github.com/user-attachments/assets/15db3e20-db29-4ca1-9e63-5ff3ee392a7b" />
-
