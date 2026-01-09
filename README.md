@@ -160,3 +160,6 @@ phone: +2347033485535
 
 linkedin: https://www.linkedin.com/in/jeremiah-ngiri-7a279619a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfHfXhsbtQrSIlFZZ0I1NqQ%3D%3D
 
+
+<img width="1429" height="790" alt="image" src="https://github.com/user-attachments/assets/15db3e20-db29-4ca1-9e63-5ff3ee392a7b" />
+
