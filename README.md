@@ -156,33 +156,35 @@ linkedin: https://www.linkedin.com/in/jeremiah-ngiri-7a279619a?lipi=urn%3Ali%3Ap
 <img width="1429" height="790" alt="image" src="https://github.com/user-attachments/assets/15db3e20-db29-4ca1-9e63-5ff3ee392a7b" />
 
 
-🛠️** How to Run**
+**🛠️ How to Run**
 Follow these steps to replicate the environment and set up the Data Warehouse on your local machine.
 
-1. Prerequisites
+**1. Prerequisites**
 SQL Server Management Studio (SSMS) or Azure Data Studio.
 
 SQL Server Instance (Express or Developer edition).
 
 2. Setup Instructions
-Clone the Repository:
+    1. Clone the Repository:
 
 Bash
 
-git clone https://github.com/your-username/your-repo-name.git
-Create the Database: Open the Scripts/init_database.sql script in SSMS and execute it to create the DataWarehouse database and the bronze, silver, and gold schemas.
+https://github.com/jerrydben/sql_data_warehouse_project.git
 
-Run the Pipeline: Execute the scripts in the following order:
+    2. Create the Database: Open the Scripts/init_database.sql 
+script in SSMS and execute it to create the DataWarehouse database and the bronze, silver, and gold schemas.
 
-Bronze: Run bronze_load.sql to import raw data.
+    3. Run the Pipeline: Execute the scripts in the following order:
 
-Silver: Run silver_transformation.sql to clean and standardize the data.
+-Bronze: Run bronze_load.sql to import raw data.
 
-Gold: Run gold_views.sql to create the final analytical Star Schema.
+-Silver: Run silver_transformation.sql to clean and standardize the data.
 
-Verify Data Quality: Run Tests/gold_dq_checks.sql to confirm that all quality gates pass and the data is consistent.
+-Gold: Run gold_views.sql to create the final analytical Star Schema.
 
-3. Usage
+    4. Verify Data Quality: Run Tests/gold_dq_checks.sql to confirm that all quality gates pass and the data is consistent.
+
+**3. Usage**
 Once the scripts have finished running, you can connect your preferred BI tool (Power BI, Tableau, or Excel) to the Gold Views for reporting.
 
 **📫 Connect With Me**
