@@ -8,6 +8,9 @@ This project highlights my ability to design, build, and document a modern data 
 
 Whether you’re a recruiter, data engineer, or analytics professional, this repository is intended to clearly show how I translate complex, multi-source data into actionable business insight.
 
+<img width="1210" height="680" alt="image" src="https://github.com/user-attachments/assets/ebe3ee21-674c-43f5-9b39-3ecac3b94f45" />
+
+
 **📌 Project Objective**
 
 The primary goal of this project was to design and implement a centralized Sales Data Warehouse that consolidates data from two core operational systems:
@@ -18,7 +21,6 @@ ERP (Enterprise Resource Planning)
 
 By integrating these systems into a single analytical environment, the warehouse provides a single source of truth for sales, customers, and products—enabling reliable reporting and strategic decision-making.
 
-<img width="1210" height="661" alt="image" src="https://github.com/user-attachments/assets/c8037630-6970-4e4b-8016-0a9c805ca286" />
 
 
 **🛠️ Technical Stack**
@@ -32,18 +34,33 @@ High-volume CSV extracts from CRM and ERP systems
 **Database: SQL Server**
 
 **Data Engineering: Advanced SQL (CTEs, Window Functions, Joins)**
+
 **ETL / Data Preparation: Power Query**
+
+**🔗 Data Integration Strategy**
+To create a unified "Customer 360" view, I integrated data from two distinct source systems (CRM and ERP). 
+This model illustrates the mapping logic used to resolve entity fragmentation.
+
+<img width="1235" height="659" alt="image" src="https://github.com/user-attachments/assets/33943109-0cd9-4b38-aca5-86ef4f3733d5" />
+
+
+**Integration Model**
+Customer Integration: Combined CRM customer info with ERP birthday and location data using the cid / cst_key mapping.
+
+Product Integration: Enriched CRM product records with ERP-managed categories and sub-categories.
+
+Sales Mapping: Transactional sales details are linked to core entities to build the fact-dimension relationships.
 
 **🏛️ Modeling Approach: Star Schema (Kimball-style)**
 To optimize the Gold Layer for analytical performance and ease of use, I implemented a Star Schema following the Kimball dimensional modeling approach. This design decouples business entities into Dimensions while centralizing quantitative metrics into a Fact table.
+
+<img width="747" height="567" alt="image" src="https://github.com/user-attachments/assets/c0401ef4-6ff3-42b4-9b82-356e14c98bc7" />
+
 
 **Entity Relationship Diagram (ERD)**
 Fact Table: gold.fact_sales contains transactional metrics like sales amount and quantity, linked to dimensions via surrogate keys.
 
 Dimension Tables: gold.dim_customers and gold.dim_products provide descriptive attributes (SCD Type 1 logic) for slicing and dicing the data.
-
-
-<img width="1080" height="783" alt="image" src="https://github.com/user-attachments/assets/8e5fc432-218a-428b-be82-6780707264b5" />
 
 
 **🏗️ Data Engineering Workflow**
@@ -99,6 +116,9 @@ The warehouse follows a three-layer architecture to ensure data reliability, sca
 -Applies business logic and generates surrogate keys
 
 -Models data into a Star Schema for reporting and BI tools
+
+<img width="1373" height="710" alt="image" src="https://github.com/user-attachments/assets/4cf60a3a-9960-443d-87b6-22dc6098d1d8" />
+
 
 **🚀 Key Features & Transformations**
 
