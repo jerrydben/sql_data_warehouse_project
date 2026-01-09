@@ -1,51 +1,162 @@
-**🚀 Welcome to the Sales Data Warehouse Project**
+**🚀 Sales Data Warehouse Project (SQL Server)**
 
-Welcome! I am Jeremiah Ogochukwu Ngiri, a Lead Business Intelligence Analyst. This repository showcases a complete Data Engineering workflow—transforming raw, disparate data into a structured environment for strategic intelligence.
+Welcome to the Sales Data Warehouse Project.
+I’m Jeremiah Ogochukwu Ngiri, a Lead Business Intelligence Analyst, and this repository demonstrates an end-to-end data engineering and analytics workflow—from raw source data to business-ready analytical views.
 
+This project highlights my ability to design, build, and document a modern data warehouse using SQL Server, with a strong focus on data quality, dimensional modeling, and analytical usability.
 
-This project demonstrates my expertise in SQL Server, Star Schema modeling, and ETL automation. Whether you are a recruiter looking at my technical stack or a fellow analyst, I hope this project provides clear insight into how I bridge the gap between complex data engineering and actionable business reporting
-
+Whether you’re a recruiter, data engineer, or analytics professional, this repository is intended to clearly show how I translate complex, multi-source data into actionable business insight.
 
 **📌 Project Objective**
-The goal of this project was to engineer a modern, centralized Data Warehouse using SQL Server to consolidate sales data from two primary source systems: ERP and CRM. This unified environment enables advanced analytical reporting and informed decision-making by providing a single source of truth.
 
+The primary goal of this project was to design and implement a centralized Sales Data Warehouse that consolidates data from two core operational systems:
 
-**🛠️ Technical Specifications**
-Data Sources: Integrated high-volume datasets provided as CSV files from ERP and CRM systems.
-Technology Stack: * Database Engine: SQL Server.
-Data Engineering: Advanced SQL (Window Functions, CTEs).
-ETL Process: Power Query for data cleansing and validation.
-Modeling: Star Schema architecture.
+CRM (Customer Relationship Management)
 
+ERP (Enterprise Resource Planning)
+
+By integrating these systems into a single analytical environment, the warehouse provides a single source of truth for sales, customers, and products—enabling reliable reporting and strategic decision-making.
+
+**🛠️ Technical Stack**
+
+**Data Sources**
+
+High-volume CSV extracts from CRM and ERP systems
+
+**Technologies & Tools**
+
+**Database: SQL Server**
+
+**Data Engineering: Advanced SQL (CTEs, Window Functions, Joins)**
+**ETL / Data Preparation: Power Query**
+
+**Modeling Approach: Star Schema (Kimball-style)**
 
 **🏗️ Data Engineering Workflow**
-1. Data Quality & Cleansing
-Prior to integration, I performed extensive data cleansing to ensure high-accuracy data integrity. This included:
-Resolving data quality issues across the ERP and CRM sources.
-Standardizing datasets to ensure seamless joining during the integration phase.
-Validating financial records and sales transactions for accuracy.
-2. Integration & Modeling
-I combined the sources into a user-friendly, high-performance data model designed for analytical queries:
-Architecture: Developed a Star Schema to optimize relationships between sales transactions (Fact Table) and customer demographics (Dimension Table).
-Analytical Queries: Leveraged SQL Window Functions to calculate complex sales growth metrics and performance trends.
-Scope: Focused on the latest dataset to provide immediate, actionable strategic intelligence.
 
+1️⃣ Data Quality & Cleansing
+
+Before integration, extensive data preparation was performed to ensure analytical reliability:
+
+Resolved data quality issues across CRM and ERP sources
+
+Standardized attributes (e.g., gender, country)
+
+Handled NULL values, duplicates, and inconsistent identifiers
+
+Validated financial and sales transaction accuracy
+
+2️⃣ Integration & Modeling
+
+Cleaned datasets were integrated into a high-performance analytical model:
+
+Architecture: Star Schema optimized for BI queries
+
+Fact Table: Centralized sales transactions
+
+Dimensions: Customer and product attributes
+
+Analytics: SQL Window Functions used to support trend and performance analysis
+
+Scope: Focused on current and relevant records for actionable insights
+
+🏗️ Data Architecture (Medallion Pattern)
+
+The warehouse follows a three-layer architecture to ensure data reliability, scalability, and clarity:
+
+**🥉 Bronze Layer (Raw)**
+
+-Stores raw data as-is from source systems
+
+-Preserves historical records for traceability
+
+**🥈 Silver Layer (Cleaned)**
+
+-Performs cleansing, standardization, and deduplication
+
+-Handles data quality issues (NULLs, inconsistent codes)
+
+-Prepares data for analytical modeling
+
+**🥇 Gold Layer (Presentation)**
+
+-Implemented as SQL Views
+
+-Applies business logic and generates surrogate keys
+
+-Models data into a Star Schema for reporting and BI tools
+
+**🚀 Key Features & Transformations**
+
+🔹 Data Integration (Customer 360)
+
+Unified customer profiles by joining:
+
+crm_cust_info
+
+erp_cust_az12
+
+erp_loc_a101
+
+**Implemented prioritized logic to standardize gender values across systems**
+
+**🔹 Data Modeling (Star Schema)**
+
+Fact Table
+
+gold.fact_sales — centralized sales transactions
+
+**Dimension Tables**
+
+gold.dim_customers
+
+gold.dim_products
+
+**Surrogate Keys**
+
+-Generated using ROW_NUMBER() within Gold views
+
+-Ensures stable analytical relationships across dimensions
+
+**🔹 Data Quality & Validation**
+
+Robust validation rules were applied at the Gold layer to ensure trust in analytics:
+
+Uniqueness: No duplicate customers or products
+
+Referential Integrity: All sales records map to valid customers and products
+
+Business Rules: Shipping dates cannot precede order dates
 
 **📂 Documentation & Deliverables**
-Data Model: Clear documentation of the schema to support both business stakeholders and analytics teams.
-SQL Scripts: Optimized code for performance tuning and data transformation.
-Validation Report: Summary of steps taken to resolve data quality issues.
 
+Data Catalogue: Column-level documentation for all Gold views
 
-**📊 Business Impact:**
-Consolidated Reporting: Eliminated data silos between sales (CRM) and operational (ERP) departments.
-Performance Tracking: Enabled executive leadership to drill down into departmental performance and revenue drivers.
-Automation: Developed automated pipelines to reduce manual data preparation time.
+SQL Scripts: Optimized transformation logic
 
+Architecture Documentation: Clear explanation of layers and modeling decisions
 
-**📫 Connect with Me**
-If you have questions about this project or want to discuss Data Engineering and BI, feel free to reach out:
-Email: jerrydben24@gmail.com 
-Location: Onitsha, Anambra State, Nigeria.
-Portfolio Focus: Data Analysis, Logistics Optimization, and HR Analytics.
+Validation Notes: Summary of data quality checks and resolutions
+
+**📊 Business Impact**
+
+Consolidated Reporting: Eliminated data silos between CRM and ERP systems
+
+Performance Tracking: Enabled revenue, product, and customer performance analysis
+
+Automation: Reduced manual data preparation through structured ETL workflows
+
+Decision Support: Delivered a reliable foundation for executive-level reporting
+
+**📫 Connect With Me**
+
+If you’d like to discuss this project or explore collaboration opportunities in Data Engineering or Business Intelligence, feel free to reach out:
+
+Email: jerrydben24@gmail.com
+
+Location: Onitsha, Anambra State, Nigeria
+
+phone: +2347033485535
+
+linkedin: https://www.linkedin.com/in/jeremiah-ngiri-7a279619a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BfHfXhsbtQrSIlFZZ0I1NqQ%3D%3D
 
