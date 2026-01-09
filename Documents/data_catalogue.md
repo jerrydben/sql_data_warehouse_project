@@ -2,12 +2,17 @@
 Project: Sales Data Warehouse (CRM & ERP Integration)**
 
 Author: Jeremiah Ngiri
+
 Layer Type: Gold (Business Presentation Layer)
+
 Object Type: SQL Views
+
 Schema: gold
 
 **🏗 Gold Layer Overview**
+
 The Gold layer consists of curated SQL views designed for analytics and reporting.
+
 **These views:**
 -Integrate CRM and ERP data
 
@@ -22,12 +27,15 @@ The Gold layer consists of curated SQL views designed for analytics and reportin
 **📘 View: gold.dim_customers**
 
 **🔹 View Purpose:**
+
 Provides a consolidated and standardized customer dimension by combining CRM and ERP customer data.
 
 **🔹 Grain:**
+
 One row per unique customer
 
 🔹 Surrogate Key
+
 customer_key – generated using ROW_NUMBER()
 
 🔹 Business Logic Highlights
@@ -56,12 +64,15 @@ customer_key – generated using ROW_NUMBER()
 **📘 View: gold.dim_products**
 
 **🔹 View Purpose:**
+
 Provides the current, active version of products with standardized categorization.
 
 **🔹 Grain:**
+
 One row per active product
 
 **🔹 Surrogate Key:**
+
 product_key – generated using ROW_NUMBER()
 
 **🔹 Business Logic Highlights:**
@@ -92,6 +103,7 @@ product_key – generated using ROW_NUMBER()
 **📙 View: gold.fact_sales**
 
 **🔹 View Purpose:**
+
 Stores transactional sales metrics enriched with surrogate keys from Gold dimensions.
 
 **🔹 Grai:n**
@@ -131,6 +143,7 @@ Gold layer objects are views, not physical tables
 -Business reporting
 
 **Follows Kimball dimensional modeling principle**
+
 **Surrogate keys generated dynamically for analytical consistency**
 
 **📌 Intended Audience**
