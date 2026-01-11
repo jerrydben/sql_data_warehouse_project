@@ -1,3 +1,9 @@
+
+
+
+<img width="1072" height="771" alt="image" src="https://github.com/user-attachments/assets/f9efb672-81bf-4b63-916e-a06f28a68f12" />
+
+
 **🏛️ Data Model Documentation: Star Schema**
 
 **📋 Overview**
