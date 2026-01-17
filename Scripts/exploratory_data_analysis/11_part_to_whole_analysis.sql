@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-4. Part-to-Whole Analysis (Category Contribution)
+Part-to-Whole Analysis (Category Contribution)
 ===============================================================================
 Objective: 
     - Determine the financial contribution of each product category to total sales.
