@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-6. Magnitude Analysis (Volume vs. Value)
+Magnitude Analysis (Volume vs. Value)
 ===============================================================================
 Objective: 
     - Categorize products based on their "Magnitude" (Total Sales) 
