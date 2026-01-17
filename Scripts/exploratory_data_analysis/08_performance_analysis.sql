@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-3. Performance Analysis (YoY & Deviation)
+Performance Analysis (YoY & Deviation)
 ===============================================================================
 Objective: 
   - Compare current sales to the product's historical average.
