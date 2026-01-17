@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-1. Change Over Time Analysis
+Change Over Time Analysis
 ===============================================================================
 Objective: Track total sales, unique customers, and quantity sold per year.
 */
