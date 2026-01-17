@@ -1,5 +1,5 @@
 /* =============================================================================
-EDA #4: Product Cost Segmentation
+EDA Product Cost Segmentation
 Author: Jeremiah Ngiri
 Layer: Gold
 Description:
