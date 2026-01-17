@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-2. Cumulative (Running Total) Analysis
+Cumulative (Running Total) Analysis
 ===============================================================================
 Objective: Calculate the running total of sales and the moving average of price.
 Optimized using CTE for better readability compared to subqueries.
