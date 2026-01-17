@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-5. Customer Segmentation Analysis (RFM Lite)
+Customer Segmentation Analysis (RFM Lite)
 ===============================================================================
 Objective: 
     - Group customers based on their spending habits and tenure (lifespan).
